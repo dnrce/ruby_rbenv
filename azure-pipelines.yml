@@ -13,7 +13,6 @@ steps:
 
 - script: c:\opscode\chefdk\bin\chef exec kitchen verify --chef-license accept
   displayName: 'kitchen verify'
-  env: {
+  env:
     KITCHEN_YAML: .kitchen.azure.yml
     winrm_port: 5986
-  }
