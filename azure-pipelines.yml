@@ -10,3 +10,6 @@ steps:
 
 - script: start /wait msiexec /i $(Agent.TempDirectory)\chefdk.msi /qn
   displayName: 'Install ChefDK'
+
+- script: c:\opscode\chefdk\bin\chef exec kitchen test --chef-license accept
+  displayName: 'kitchen'
