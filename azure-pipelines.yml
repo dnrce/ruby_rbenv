@@ -5,8 +5,8 @@ pool:
   vmImage: vs2017-win2016
 
 steps:
-- powershell: (new-object System.Net.WebClient).DownloadFile('https://packages.chef.io/files/stable/chef-workstation/0.4.1/windows/2012/chef-workstation-0.4.1-1-x64.msi','C:\chef-workstation.msi')
-  displayName: 'Download Chef Workstation'
+- powershell: (new-object System.Net.WebClient).DownloadFile('https://packages.chef.io/files/stable/chefdk/4.0.60/windows/2016/chefdk-4.0.60-1-x64.msi','C:\chefdk.msi')
+  displayName: 'Download ChefDK'
 
-- script: start /wait msiexec /i c:\chef-workstation.msi /qn
-  displayName: 'Install Chef Workstation'
+- script: start /wait msiexec /i c:\chefdk.msi /qn
+  displayName: 'Install ChefDK'
