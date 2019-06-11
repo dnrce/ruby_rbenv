@@ -1,0 +1,18 @@
+trigger:
+- master
+
+pool:
+  vmImage: vs2017-win2016
+
+steps:
+- powershell: (new-object System.Net.WebClient).DownloadFile("https://packages.chef.io/files/stable/chefdk/4.0.60/windows/2016/chefdk-4.0.60-1-x64.msi","$(Agent.TempDirectory)\chefdk.msi")
+  displayName: 'Download ChefDK'
+
+- script: start /wait msiexec /i $(Agent.TempDirectory)\chefdk.msi /qn
+  displayName: 'Install ChefDK'
+
+- script: c:\opscode\chefdk\bin\chef exec --chef-license accept kitchen verify
+  displayName: 'kitchen verify'
+  env:
+    KITCHEN_YAML: .kitchen.azure.yml
+    winrm_port: 5986
