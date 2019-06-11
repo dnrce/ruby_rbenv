@@ -11,5 +11,9 @@ steps:
 - script: start /wait msiexec /i $(Agent.TempDirectory)\chefdk.msi /qn
   displayName: 'Install ChefDK'
 
-- script: c:\opscode\chefdk\bin\chef exec kitchen test --chef-license accept
-  displayName: 'kitchen'
+- script: c:\opscode\chefdk\bin\chef exec kitchen verify --chef-license accept
+  displayName: 'kitchen verify'
+  env: {
+    KITCHEN_YAML: .kitchen.azure.yml
+    winrm_port: 5986
+  }
